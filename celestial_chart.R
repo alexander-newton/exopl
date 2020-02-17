@@ -14,9 +14,7 @@ celtocart <- function(right_asc, decl, dist) {
 
 exopl <- exopl %>% 
   dplyr::rowwise() %>%
-  dplyr::mutate(x = celtocart(ra, dec, st_dist)[1],
-                y = celtocart(ra, dec, st_dist)[2],
-                z = celtocart(ra, dec, st_dist)[3])
+  dplyr::mutate_at(c(x,y,z), celtocart(ra, dec, st_dist))
 
 
 p <- plotly::plot_ly(
